@@ -1,0 +1,6 @@
+cloudreve
+uploads/*
+cloudreve.db
+cloudreve.log
+conf.ini
+last_check
