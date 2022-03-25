@@ -1,5 +1,8 @@
 <?php
 function start_process() {
+    if(!file_exists("./cloudreve")) {
+        die("Cloudreve excutable is not found in current directory, please download and grant correct permission for it.");
+    }
     exec("killall cloudreve");
     exec("./cloudreve  > ./cloudreve.log &");
     while(!@file_get_contents("http://127.0.0.1:5212")) {
@@ -7,6 +10,7 @@ function start_process() {
     }
 }
 function check_process() {
+    if (!is_writable("./")) die("Program does not has permission to write at current directory, please check if you has granted all required permission.");
     if (!file_exists("./last_check")) {
         file_put_contents("./last_check", time());
         start_process();
